@@ -21,3 +21,17 @@ jobs:
         with:
           version: 9
           platform: x64
+
+      - uses: actions/checkout@v2
+
+      - name: run cmake
+        run: cmake -B ${{github.workspace}}/build
+        working-directory: ${{github.workspace}}/cpp
+
+      - name: run make
+        run: make
+        working-directory: ${{github.workspace}}/build
+
+      - name: tests
+        run: ./unittests
+        working-directory: ${{github.workspace}}/build        
